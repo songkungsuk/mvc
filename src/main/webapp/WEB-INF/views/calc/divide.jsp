@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/common.jsp"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Welcome</h1>
-	<h1>
-		<a href="<%=root %>/lotto">로또맞추기</a>
-	</h1>
+d
 </body>
 </html>

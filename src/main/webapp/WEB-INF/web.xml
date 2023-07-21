@@ -12,9 +12,42 @@
 		<servlet-name>ClassInfoServlet</servlet-name>
 		<servlet-class>com.mvc.controller.ClassInfoServlet</servlet-class>
 	</servlet>
-	
+
 	<servlet-mapping>
-	<servlet-name>ClassInfoServlet</servlet-name>
-	<url-pattern>/class-info/*</url-pattern>
+		<servlet-name>ClassInfoServlet</servlet-name>
+		<url-pattern>/class-info/*</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CalcServlet</servlet-name>
+		<servlet-class>com.mvc.controller.CalcServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CalcServlet</servlet-name>
+		<url-pattern>/calc/*</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<servlet-name>LottoServlet</servlet-name>
+		<servlet-class>com.mvc.controller.LottoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>LottoServlet</servlet-name>
+		<url-pattern>/lotto/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FindServlet</servlet-name>
+		<servlet-class>com.mvc.controller.FindServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FindServlet</servlet-name>
+		<url-pattern>/find/*</url-pattern>
+	</servlet-mapping>
+
 </web-app>
