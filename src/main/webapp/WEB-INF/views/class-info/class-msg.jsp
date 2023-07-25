@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-insert
+${msg}
+<button onclick="location.href='${URL}'">버튼이름안썻네요</button>
 </body>
 </html>

@@ -10,6 +10,8 @@
 </head>
 <body>
 	view
+	<form action="/user-info/delete" method="post">
+	<input type="hidden" name="uiNum" value="${user.UI_NUM}">
 	<table border="1">
 		<tr>
 			<td>번호</td>
@@ -23,7 +25,14 @@
 			<td>${user.UI_PWD }</td>
 			<td>${user.UI_NAME }</td>
 		</tr>
+		<tr>
+			<th colspan="2">
+				<button onclick="location.href='/user-info/update?uiNum=${user.UI_NUM}'" type="button">수정</button>
+				<button>삭제</button>
+			</th>
+		</tr>
 
 	</table>
+	</form>
 </body>
 </html>

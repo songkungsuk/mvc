@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-update
+<form action="/class-info/insert" method="post">
+<input type="text" name="CI_NAME" placeholder="이름">
+<input type="text" name="CI_DESC" placeholder="설명">
+<button>등록</button>
+</form>
 </body>
 </html>

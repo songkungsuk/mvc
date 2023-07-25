@@ -12,21 +12,16 @@ import java.util.Map;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 
+import com.mvc.common.DBCon;
+
 public class ClassInfoRepository {
-	final static String DRIVER_NAME = "org.mariadb.jdbc.Driver";
-	final static String URL = "jdbc:mariadb://localhost:3306/kd";
-	final static String ID = "root";
-	final static String PW = "kd1824java";
+
 	public List<Map<String, String>> selectClassInfoList() {
 
 		List<Map<String, String>> classInfoList = new ArrayList<>();
+
 		try {
-			Class.forName(DRIVER_NAME);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		try {
-			Connection con = DriverManager.getConnection(URL, ID, PW);
+			Connection con = DBCon.getCon();
 			String sql = "SELECT * FROM CLASS_INFO WHERE 1=1";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs =	ps.executeQuery();
@@ -48,13 +43,9 @@ public class ClassInfoRepository {
 	public Map<String, String> selectClassInfoOne(String num) {
 		
 		Map<String, String> map = new HashMap<>();
+
 		try {
-			Class.forName(DRIVER_NAME);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		try {
-			Connection con = DriverManager.getConnection(URL, ID, PW);
+			Connection con = DBCon.getCon();
 			String sql = "SELECT * FROM CLASS_INFO WHERE 1=1 AND CI_NUM=?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, num);
@@ -72,5 +63,21 @@ public class ClassInfoRepository {
 			e.printStackTrace();
 		}
 		return map;
+	}
+	public int insertClassInfo(Map<String, String> classInfo) {
+		Connection con = DBCon.getCon();
+		String sql = "INSERT INTO CLASS_INFO (CI_NAME, CI_DESC)";
+		sql += "VALUES(?,?)";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, classInfo.get("CI_NAME"));
+			ps.setString(2, classInfo.get("CI_DESC"));
+			
+			int result = ps.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
 	}
 }

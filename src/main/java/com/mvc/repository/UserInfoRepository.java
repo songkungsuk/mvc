@@ -3,6 +3,7 @@ package com.mvc.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,8 +58,64 @@ public class UserInfoRepository {
 		}
 		return user;
 	}
+	
+	public int insertUserInfo(Map<String, String> userInfo) {
+		String sql = "INSERT INTO USER_INFO(UI_ID, UI_PWD, UI_NAME)";
+		sql += "VALUES(?,?,?)"; //values
+		
+		try (Connection con = DBCon.getCon()){
+			try(PreparedStatement ps = con.prepareStatement(sql)){
+				ps.setString(1, userInfo.get("uiId"));
+				ps.setString(2, userInfo.get("uiPwd"));
+				ps.setString(3, userInfo.get("uiName"));
+				return ps.executeUpdate();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
+	public int updateUserInfo (Map<String, String> userInfo) {
+		
+		Connection con = DBCon.getCon();
+		String sql = "UPDATE user_info SET UI_ID = ?, UI_PWD = ?, UI_NAME = ? WHERE UI_NUM = ?";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, userInfo.get("uiId"));
+			ps.setString(2, userInfo.get("uiPwd"));
+			ps.setString(3, userInfo.get("uiName"));
+			ps.setString(4, userInfo.get("uiNum"));
+			int result = ps.executeUpdate();
+			
+			return result;
+		} catch (Exception e) {
+			
+		}
+		
+		
+		return 0;
+	}
+	
+	public int deleteUserInfo(String uiNum) {
+		String sql = "DELETE FROM user_info WHERE UI_NUM = ?";
+		try {
+			Connection con = DBCon.getCon();
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, uiNum);
+			int result = ps.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return 0;		
+	}
 	public static void main(String[] args) {
 		UserInfoRepository ur = new UserInfoRepository();
-		System.out.println(ur.getUser("9").get("UI_ID"));
+		Map<String, String> params = new HashMap<String, String>();
+		
 	}
 }

@@ -28,7 +28,7 @@
 			</tr>
 		</c:forEach>
 
-
+<tr><td><button onclick="location.href='/class-info/insert'">신규 학생 등록</button></td></tr>
 	</table>
 </body>
 </html>
